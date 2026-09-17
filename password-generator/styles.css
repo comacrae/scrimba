@@ -18,6 +18,7 @@ main{
     flex-direction: column;
     gap:10px;
 }
+
 .header{
     font-size: 40px;
     font-family: sans-serif;
@@ -45,5 +46,15 @@ main{
 }
 
 .btn-generate{
+    margin-top:52px;
     background-color:#10B981;
+    width: 192px;
+    height:42px;
+    border:0;
+    border-radius: 6px;
+    font-size:16px;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
