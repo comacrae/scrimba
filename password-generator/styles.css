@@ -6,9 +6,19 @@ body{
     font-size: 40px;
     font-family: sans-serif;
     color: white;
+    
 }
 
 .header-emph{
     font-style: italics;
     color: #10B981;
+    
+}
+
+.subtitle{
+    color: white;
+    font-size:20px;
+    line-height:28px;
+    font-family: sans-serif;
+    font-weight:100;
 }
