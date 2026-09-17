@@ -1,16 +1,33 @@
-body{
-    background-color: #1F2937;
+*, *::before, *::after {
+    box-sizing: border-box; /*for easier padding*/
 }
 
+body{
+    background-color: #1C1C1C;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    background-color: #1F2937;
+    width: 550px;
+    height:550px;
+    padding: 64px 62px;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
 .header{
     font-size: 40px;
     font-family: sans-serif;
     color: white;
-    
+    padding:0px;
+    margin:0px;
+    line-height:1;
 }
 
 .header-emph{
-    font-style: italics;
     color: #10B981;
     
 }
@@ -18,7 +35,15 @@ body{
 .subtitle{
     color: white;
     font-size:20px;
-    line-height:28px;
     font-family: sans-serif;
     font-weight:100;
+    margin:0px;
+}
+
+.password-container{
+    
+}
+
+.btn-generate{
+    background-color:#10B981;
 }
