@@ -7,13 +7,13 @@ class Password {
     btn = null;
     showHint = null;
     
-    constructor(btn, hintCallback){
+    constructor(btn, showHintCallback){
         btn.textContent = "";
          btn.addEventListener("click", this.#copyPassword);
          btn.addEventListener("mouseenter", this.#showPassword);
          btn.addEventListener("mouseleave", this.#hidePassword);
          this.btn = btn;
-         this.showHint = hintCallback;
+         this.showHint =showHintCallback;
          
     }
     
@@ -56,14 +56,6 @@ class Password {
     }
 }
 
-
-const passwords = [];
-const hint = {
-    HINT_TEXT : "Generate passwords, then hover to reveal and click to copy.",
-    el: document.querySelector(".hint"),
-    timer: null,
-}
-
 function flashHint(message){
         hint.el.textContent = message;
         clearTimeout(hint.timer);
@@ -72,8 +64,15 @@ function flashHint(message){
 
 function generatePasswords() {
     for (const password of passwords){
-        password.createPassword();
+        password.createPassword(usePasswordLen(),useSpecialCharToggle());
     }
+}
+
+function useSpecialCharToggle(){
+    return specialCharSwitch.checked;
+}
+function usePasswordLen(){
+    return Number(passwordLenSlider.value);
 }
 
 function render(){
@@ -83,8 +82,21 @@ function render(){
     generateBtn.addEventListener("click", generatePasswords);
     const passwordBtns = document.querySelectorAll(".btn-password");
     for(const btn of passwordBtns){
-        passwords.push(new Password(btn, hint.flash));
+        passwords.push(new Password(btn, flashHint));
     }
 }
 
+const passwords = [];
+const specialCharSwitch = /** @type {HTMLInputElement} */ (document.getElementById("special-char-switch"));
+const passwordLenSlider = /** @type {HTMLInputElement} */ (document.getElementById("password-len"));
+
+const hint = {
+    HINT_TEXT : "Generate passwords, then hover to reveal and click to copy.",
+    el: document.querySelector(".hint"),
+    timer: null,
+}
+
+
 render();
+
+
