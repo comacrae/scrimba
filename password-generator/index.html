@@ -20,6 +20,21 @@
                 <button class="btn btn-password"></button>
 
             </div>
+            <div class="config-container">
+                <input id="password-len" class="slider" 
+                type="range" 
+                min=6
+                max=12
+                step=1
+                value=6>
+                <label for="password-len">Password Length</label>
+                <span id="len-val"></span>
+                </input>
+                <input id="special-char-toggle" class="switch" type="checkbox">
+                <label for="special-char-toggle">Toggle special characters</label>
+                </input>
+
+            </div>
         </main>
     </body>
 </html>

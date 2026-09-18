@@ -117,3 +117,20 @@ main{
     transform: translateY(1px);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
+
+.config-container{
+    margin-top:20px;
+    display: flex;
+    flex-direction:row;
+    gap: 10px;
+    justify-content:space-evenly;
+    align-items:center;
+}
+
+.password-length{
+    .color:red;
+}
+.switch{
+    width:20px;
+    appearance:none;
+}
