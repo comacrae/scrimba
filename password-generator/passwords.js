@@ -89,6 +89,11 @@ function render(){
 const passwords = [];
 const specialCharSwitch = /** @type {HTMLInputElement} */ (document.getElementById("special-char-switch"));
 const passwordLenSlider = /** @type {HTMLInputElement} */ (document.getElementById("password-len"));
+const passwordLen = document.getElementById("len-val");
+
+passwordLenSlider.addEventListener("input",()=>{
+     passwordLen.textContent = passwordLenSlider.value;
+})
 
 const hint = {
     HINT_TEXT : "Generate passwords, then hover to reveal and click to copy.",
