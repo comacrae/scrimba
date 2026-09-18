@@ -57,13 +57,8 @@ main{
 
 .btn:hover {
     cursor:pointer;
-
 }
 
-.btn:active{
-    transform: translateY(2px);
-
-}
 .btn-generate{
     margin-top:52px;
     background-color:#10B981;
@@ -76,10 +71,16 @@ main{
     display:flex;
     align-items:center;
     justify-content:center;
+
 }
 .btn-generate:hover{
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-    transform: translateY(-2px);
+
+}
+
+.btn-generate:active{
+   transform: translateY(1px);
+   box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
 
 }
 
@@ -98,5 +99,10 @@ main{
 
 .btn-password:hover{
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+.btn-password:active{
+    transform: translateY(1px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 
+    
 }
