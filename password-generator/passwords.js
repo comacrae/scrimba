@@ -5,13 +5,15 @@ class Password {
     #password = "";
     obfuscated = "";
     btn = null;
+    showHint = null;
     
-    constructor(btn){
+    constructor(btn, hintCallback){
         btn.textContent = "";
          btn.addEventListener("click", this.#copyPassword);
          btn.addEventListener("mouseenter", this.#showPassword);
          btn.addEventListener("mouseleave", this.#hidePassword);
          this.btn = btn;
+         this.showHint = hintCallback;
          
     }
     
@@ -39,8 +41,9 @@ class Password {
     }
     
     #copyPassword = () => {
-        navigator.clipboard.writeText(this.#password);
-        
+        navigator.clipboard.writeText(this.#password).then(
+            () => flashHint("Password copied to clipboard"),
+             () => flashHint("Failed to copy to clipboard"));
     }
     
     #showPassword = () => {
@@ -52,18 +55,19 @@ class Password {
 
     }
 }
-}
+
 
 const passwords = [];
 const hint = {
     HINT_TEXT : "Generate passwords, then hover to reveal and click to copy.",
     el: document.querySelector(".hint"),
     timer: null,
-    flash(message){
-        this.el.textContent = message;
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => this.el.textContent = this.HINT_TEXT, 1000)
-    }
+}
+
+function flashHint(message){
+        hint.el.textContent = message;
+        clearTimeout(hint.timer);
+        hint.timer = setTimeout(() => hint.el.textContent = hint.HINT_TEXT, 1000)
 }
 
 function generatePasswords() {
@@ -74,11 +78,12 @@ function generatePasswords() {
 
 function render(){
     //init elements
+    hint.el.textContent = hint.HINT_TEXT;
     const generateBtn = document.getElementById("generate-btn");
     generateBtn.addEventListener("click", generatePasswords);
     const passwordBtns = document.querySelectorAll(".btn-password");
     for(const btn of passwordBtns){
-        passwords.push(new Password(btn));
+        passwords.push(new Password(btn, hint.flash));
     }
 }
 
