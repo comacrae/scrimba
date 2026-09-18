@@ -39,12 +39,6 @@ class Password {
     }
     
     #copyPassword = () => {
-        let hintEl = document.querySelector(".hint");
-        let hintText = hintEl.textContent;
-        hintEl.textContent="Copied to clipboard!";
-        setTimeout(()=> {
-            hintEl.textContent = hintText;
-        }, 800);
         navigator.clipboard.writeText(this.#password);
         
     }
@@ -58,8 +52,19 @@ class Password {
 
     }
 }
+}
 
 const passwords = [];
+const hint = {
+    HINT_TEXT : "Generate passwords, then hover to reveal and click to copy.",
+    el: document.querySelector(".hint"),
+    timer: null,
+    flash(message){
+        this.el.textContent = message;
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => this.el.textContent = this.HINT_TEXT, 1000)
+    }
+}
 
 function generatePasswords() {
     for (const password of passwords){
