@@ -41,10 +41,26 @@ main{
     margin:0px;
 }
 
-.password-container{
-    border-top: 1px solid #2F3E53;
+.hint{
+     border-top: 1px solid #2F3E53;
     margin-top: 35px;
     padding-top:35px;
+    margin-bottom:;
+    text-align:center;
+     color: white;
+    font-size:14px;
+    font-family: sans-serif;
+    font-weight:100;
+    line-height:1;
+    transition: opacity 200ms ease;
+}
+
+.hint.hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.password-container{
     display: flex;
     flex-direction:row;
     gap: 24px;
@@ -53,10 +69,6 @@ main{
 
 .btn{
     transition: box-shadow 150ms ease, transform 150ms ease;
-}
-
-.btn:hover {
-    cursor:pointer;
 }
 
 .btn-generate{
@@ -75,7 +87,7 @@ main{
 }
 .btn-generate:hover{
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-
+    cursor:pointer;
 }
 
 .btn-generate:active{
@@ -97,12 +109,11 @@ main{
     height:39px;
 }
 
-.btn-password:hover{
+.btn-password.populated:hover{
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    cursor:pointer;
 }
-.btn-password:active{
+.btn-password.populated:active{
     transform: translateY(1px);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-
-    
 }

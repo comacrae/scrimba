@@ -31,6 +31,7 @@ class Password {
         for(let i = 0; i < password.length; i++)
             this.obfuscated += Password.OBFUSCATOR;
         this.btn.textContent = this.obfuscated;
+        this.btn.classList.add("populated");
     }
     
     clearPassword(){
@@ -38,7 +39,14 @@ class Password {
     }
     
     #copyPassword = () => {
+        let hintEl = document.querySelector(".hint");
+        let hintText = hintEl.textContent;
+        hintEl.textContent="Copied to clipboard!";
+        setTimeout(()=> {
+            hintEl.textContent = hintText;
+        }, 800);
         navigator.clipboard.writeText(this.#password);
+        
     }
     
     #showPassword = () => {
