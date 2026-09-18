@@ -8,8 +8,9 @@ class Password {
     
     constructor(btn){
         btn.textContent = "";
-         btn.addEventListener("click", this.copyPassword);
-         //btn.addEventListener("hover", showPassword);
+         btn.addEventListener("click", this.#copyPassword);
+         btn.addEventListener("mouseenter", this.#showPassword);
+         btn.addEventListener("mouseleave", this.#hidePassword);
          this.btn = btn;
          
     }
@@ -36,15 +37,23 @@ class Password {
         this.btn.textContent = "";
     }
     
-    copyPassword = () => {
+    #copyPassword = () => {
         navigator.clipboard.writeText(this.#password);
     }
     
+    #showPassword = () => {
+        this.btn.textContent = this.#password;
+    }
+    
+    #hidePassword = () => {
+        this.btn.textContent = this.obfuscated;
+
+    }
 }
 
 const passwords = [];
 
-function generatePasswords(passwords) {
+function generatePasswords() {
     for (const password of passwords){
         password.createPassword();
     }
@@ -55,8 +64,9 @@ function render(){
     const generateBtn = document.getElementById("generate-btn");
     generateBtn.addEventListener("click", generatePasswords);
     const passwordBtns = document.querySelectorAll(".btn-password");
-    const passwords = [];
     for(const btn of passwordBtns){
         passwords.push(new Password(btn));
     }
 }
+
+render();
