@@ -51,6 +51,19 @@ main{
     
 }
 
+.btn{
+    transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.btn:hover {
+    cursor:pointer;
+
+}
+
+.btn:active{
+    transform: translateY(2px);
+
+}
 .btn-generate{
     margin-top:52px;
     background-color:#10B981;
@@ -64,6 +77,11 @@ main{
     align-items:center;
     justify-content:center;
 }
+.btn-generate:hover{
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    transform: translateY(-2px);
+
+}
 
 .btn-password{
     background-color:#273549;
@@ -76,5 +94,9 @@ main{
     justify-content:center;
     width: 211px;
     height:39px;
-    
+}
+
+.btn-password:hover{
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
 }
