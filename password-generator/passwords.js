@@ -1,6 +1,7 @@
 class Password {
-     static #CHARSET = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
-        "/"];
+     static #DEFAULT_CHARSET = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+     static #SPECIAL_CHARSET = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"]
+     
     static OBFUSCATOR = "●";
     #password = "";
     obfuscated = "";
@@ -18,32 +19,46 @@ class Password {
     }
     
     
-    #getChar(){
-        return Password.#CHARSET[Math.floor(Math.random() * Password.#CHARSET.length)];
-
+    #getRandomChar(charset){
+        return charset[Math.floor(Math.random() * charset.length)];
     }
     
-    createPassword(passLen=10, useSpecial=true){
-        let password = "";
-        for(let i = 0; i < passLen; i++){
-            password+= this.#getChar();
+    #fisherYatesShuffle(inputStr){
+        const chars = [...inputStr];
+        for (let i = chars.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        
+        [chars[i], chars[j]] = [chars[j], chars[i]];
         }
-        this.#password = password;
+        return chars.join("");
+    }
+    
+    createPassword(passLen=10, useSpecial=false){
+        let password = "";
+        let charset = Password.#DEFAULT_CHARSET;
+        
+        for(let i = 0; i < passLen; i++){
+            if(useSpecial && i == passLen - 1)
+                charset = Password.#SPECIAL_CHARSET;
+            password+= this.#getRandomChar(charset);
+        }
+        
+        this.#password = this.#fisherYatesShuffle(password);
         this.obfuscated = "";
+        
+        
         for(let i = 0; i < password.length; i++)
             this.obfuscated += Password.OBFUSCATOR;
         this.btn.textContent = this.obfuscated;
         this.btn.classList.add("populated");
     }
     
-    clearPassword(){
-        this.btn.textContent = "";
-    }
+
     
     #copyPassword = () => {
         navigator.clipboard.writeText(this.#password).then(
-            () => flashHint("Password copied to clipboard"),
-             () => flashHint("Failed to copy to clipboard"));
+            () => this.showHint("Password copied to clipboard"),
+             () => this.showHint("Failed to copy to clipboard"));
     }
     
     #showPassword = () => {
