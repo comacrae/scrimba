@@ -84,6 +84,7 @@ function render(){
     for(const btn of passwordBtns){
         passwords.push(new Password(btn, flashHint));
     }
+    passwordLen.textContent = passwordLenSlider.value;
 }
 
 const passwords = [];

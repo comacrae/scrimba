@@ -22,16 +22,21 @@
 
             </div>
             <div class="config-container">
-                <input id="password-len" class="slider" 
-                type="range" 
-                min=6
-                max=12
-                step=1
-                value=6/>
-                <label for="password-len">Password Length</label>
-                <span id="len-val"></span>
-                <input id="special-char-switch" class="switch" type="checkbox"/>
-                <label for="special-char-switch">Toggle special characters</label>
+                <div class="config-col">
+                <label for="password-len">Password Length: <span id="len-val"></span></label>
+                    
+                    <input id="password-len" class="slider" 
+                    type="range" 
+                    min=6
+                    max=12
+                    step=1
+                    value=6
+                    />
+                </div>
+                <div class="config-row">
+                    <input id="special-char-switch" class="switch" type="checkbox"/>
+                    <label for="special-char-switch">Toggle special characters</label>
+                </div>
 
             </div>
         </main>
